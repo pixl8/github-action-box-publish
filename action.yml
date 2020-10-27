@@ -1,0 +1,9 @@
+name: publish-forgebox-package
+description: This is an action to publish your package to forgebox
+author: Pixl8 Group
+branding:
+  icon: 'thumbs-up'
+  color: 'white'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
