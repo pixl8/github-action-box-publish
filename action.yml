@@ -6,4 +6,5 @@ branding:
   color: 'green'
 runs:
   using: 'docker'
-  image: 'docker://pixl8/github-action-box-publish:v1'
+  # image: 'docker://pixl8/github-action-box-publish:v1'
+  image: 'Dockerfile'
