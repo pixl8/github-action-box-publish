@@ -17,7 +17,11 @@ if [[ -f $BOX_JSON_FILE ]] ; then
 		mv $BOX_JSON_FILE.substituted $BOX_JSON_FILE
 	fi
 
-	echo "Download url: $DOWNLOAD_URL"
+	echo "Publishing box.json to Forgebox:"
+	echo "--------------------------------"
+	cat $BOX_JSON_FILE
+	echo "--------------------------------"
+
 
 	box forgebox login username="$FORGEBOX_USER" password="$FORGEBOX_PASS" || exit 1;
 	box publish directory="$FULL_DIR" || exit 1;
