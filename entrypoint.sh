@@ -19,6 +19,12 @@ if [[ -f $BOX_JSON_FILE ]] ; then
 
 	box forgebox login username="$FORGEBOX_USER" password="$FORGEBOX_PASS" || exit 1;
 	box publish directory="$FULL_DIR" || exit 1;
+
+	echo ""
+	echo "------------------"
+	echo "ALL DONE. SUCCESS."
+	echo "------------------"
+	echo ""
 else
 	echo "No box.json file found at: $BOX_JSON_FILE. Not publishing."
 	exit 1
