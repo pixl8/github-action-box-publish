@@ -12,6 +12,7 @@ fi
 
 if [[ -f $BOX_JSON_FILE ]] ; then
 	if [[ "$DO_ENV_SUBSTITUTION" == "true" ]] ; then
+		echo "Download URL: ${DOWNLOAD_URL}"
 		envsubst < $BOX_JSON_FILE > $BOX_JSON_FILE.substituted
 		rm $BOX_JSON_FILE
 		mv $BOX_JSON_FILE.substituted $BOX_JSON_FILE
