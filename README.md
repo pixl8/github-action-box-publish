@@ -40,9 +40,9 @@ jobs:
     
     # this is the usage of this box publish action
     - uses: pixl8/github-action-box-publish@v1
-      env:
-      	FORGEBOX_USER: myforgeboxuser
-      	FORGEBOX_PASS: ${{ secrets.FORGEBOX_PASS }}
+      with:
+      	forgebox_user: myforgeboxuser
+      	forgebox_pass: ${{ secrets.FORGEBOX_PASS }}
 ```
 
 ## Environment variable substition
@@ -71,9 +71,10 @@ steps:
   # DOWNLOAD_URL env vars
 
   - uses: pixl8/github-action-box-publish@v1
+    with:
+      forgebox_user: pixl8
+      forgebox_pass: ${{ secrets.FORGEBOX_PASS }}
     env:
-      FORGEBOX_USER: pixl8
-      FORGEBOX_PASS: ${{ secrets.FORGEBOX_PASS }}
       DOWNLOAD_URL: ${{ env.DOWNLOAD_URL }}
       VERSION_NUMBER: ${{ env.VERSION_NUMBER }}
 ```
