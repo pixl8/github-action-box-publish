@@ -11,17 +11,15 @@ if [[ -z "$INPUT_FORGEBOX_USER" ]] || [[ -z "$INPUT_FORGEBOX_PASS" ]] ; then
 fi
 
 if [[ -f $BOX_JSON_FILE ]] ; then
-	if [[ "$DO_ENV_SUBSTITUTION" == "true" ]] ; then
-		envsubst < $BOX_JSON_FILE > $BOX_JSON_FILE.substituted
-		rm $BOX_JSON_FILE
-		mv $BOX_JSON_FILE.substituted $BOX_JSON_FILE
-	fi
+	envsubst < $BOX_JSON_FILE > $BOX_JSON_FILE.substituted
+	mv $BOX_JSON_FILE.substituted $BOX_JSON_FILE
+	# if [[ "$DO_ENV_SUBSTITUTION" == "true" ]] ; then
+	# fi
 
 	echo "Publishing box.json to Forgebox:"
 	echo "--------------------------------"
 	cat $BOX_JSON_FILE
 	echo "--------------------------------"
-
 
 	box forgebox login username="$INPUT_FORGEBOX_USER" password="$INPUT_FORGEBOX_PASS" || exit 1;
 	box publish directory="$FULL_DIR" || exit 1;
