@@ -11,10 +11,13 @@ if [[ -z "$INPUT_FORGEBOX_USER" ]] || [[ -z "$INPUT_FORGEBOX_PASS" ]] ; then
 fi
 
 if [[ -f $BOX_JSON_FILE ]] ; then
-	envsubst < $BOX_JSON_FILE > $BOX_JSON_FILE.substituted
-	mv $BOX_JSON_FILE.substituted $BOX_JSON_FILE
-	# if [[ "$DO_ENV_SUBSTITUTION" == "true" ]] ; then
-	# fi
+	if [[ "$DO_ENV_SUBSTITUTION" == "true" ]] ; then
+		export VERSION_NUMBER='${VERSION_NUMBER:-"test"}'
+		export DOWNLOAD_LOCATION='${DOWNLOAD_LOCATION:-"test"}'
+		substvars='$VERSION_NUMBER:$DOWNLOAD_LOCATION'
+		envsubst "$substvars" < $BOX_JSON_FILE > $BOX_JSON_FILE.substituted
+		mv $BOX_JSON_FILE.substituted $BOX_JSON_FILE
+	fi
 
 	echo "Publishing box.json to Forgebox:"
 	echo "--------------------------------"
