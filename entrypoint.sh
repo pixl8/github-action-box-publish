@@ -11,11 +11,16 @@ if [[ -z "$INPUT_FORGEBOX_USER" ]] || [[ -z "$INPUT_FORGEBOX_PASS" ]] ; then
 fi
 
 if [[ -f $BOX_JSON_FILE ]] ; then
-	if [[ -n "${INPUT_VERSION_NUMBER}" ]] ; then
-		sed -i "s,{VERSION_NUMBER},$INPUT_VERSION_NUMBER," $BOX_JSON_FILE
-	fi
-	if [[ -n "${INPUT_DOWNLOAD_LOCATION}" ]] ; then
-		sed -i "s,{DOWNLOAD_LOCATION},$INPUT_DOWNLOAD_LOCATION," $BOX_JSON_FILE
+	export VERSION_NUMBER=${INPUT_VERSION_NUMBER}
+	export DOWNLOAD_LOCATION=${INPUT_DOWNLOAD_LOCATION}
+
+	if [[ "$DO_ENV_SUBSTITUTION" == "true" ]] ; then
+		export VERSION_NUMBER=${VERSION_NUMBER:=${INPUT_VERSION_NUMBER}}
+		export DOWNLOAD_LOCATION=${DOWNLOAD_LOCATION:=${INPUT_DOWNLOAD_LOCATION}}
+
+		envsubst < $BOX_JSON_FILE > $BOX_JSON_FILE.substituted
+		rm $BOX_JSON_FILE
+		mv $BOX_JSON_FILE.substituted $BOX_JSON_FILE
 	fi
 
 	echo "Publishing box.json to Forgebox:"
