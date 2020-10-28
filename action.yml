@@ -11,12 +11,6 @@ inputs:
   forgebox_pass:
     description: Forgebox password to authenticate with when publishing the package
     required: true
-  version_number:
-    description: 'The version number to publish'
-    required: false
-  download_location:
-    description: 'The location where the published version can be downloaded'
-    required: false
 runs:
   using: 'docker'
   # image: 'docker://pixl8/github-action-box-publish:v1'

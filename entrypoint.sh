@@ -12,9 +12,6 @@ fi
 
 if [[ -f $BOX_JSON_FILE ]] ; then
 	if [[ "$DO_ENV_SUBSTITUTION" == "true" ]] ; then
-		export VERSION_NUMBER=${VERSION_NUMBER:=${INPUT_VERSION_NUMBER}}
-		export DOWNLOAD_LOCATION=${DOWNLOAD_LOCATION:=${INPUT_DOWNLOAD_LOCATION}}
-
 		envsubst < $BOX_JSON_FILE > $BOX_JSON_FILE.substituted
 		rm $BOX_JSON_FILE
 		mv $BOX_JSON_FILE.substituted $BOX_JSON_FILE
