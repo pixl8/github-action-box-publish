@@ -39,7 +39,7 @@ jobs:
           fetch-depth: 0
     
     # this is the usage of this box publish action
-    - uses: pixl8/github-action-box-publish@v1
+    - uses: pixl8/github-action-box-publish@v2
       with:
       	forgebox_user: myforgeboxuser
       	forgebox_pass: ${{ secrets.FORGEBOX_PASS }}
