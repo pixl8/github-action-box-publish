@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 BOXJSON_DIR=${BOXJSON_DIR:-""}
 FULL_DIR="${GITHUB_WORKSPACE}${BOXJSON_DIR}"
