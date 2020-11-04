@@ -1,4 +1,4 @@
-FROM pixl8/docker-commandbox-lite:v1.5
+FROM foundeo/minibox:2020.04
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
