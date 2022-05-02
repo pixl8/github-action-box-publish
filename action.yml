@@ -11,6 +11,9 @@ inputs:
   forgebox_pass:
     description: Forgebox password to authenticate with when publishing the package
     required: true
+  force:
+    description: Whether or not to force publishing by passing --force flag to the box publish command. true or false. Default is false.
+    required: false
 runs:
   using: 'docker'
   image: 'Dockerfile'

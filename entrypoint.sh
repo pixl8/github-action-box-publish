@@ -3,7 +3,12 @@
 BOXJSON_DIR=${BOXJSON_DIR:-""}
 FULL_DIR="${GITHUB_WORKSPACE}${BOXJSON_DIR}"
 BOX_JSON_FILE="${FULL_DIR}/box.json"
-DO_ENV_SUBSTITUTION="true"
+DO_ENV_SUBSTITUTION="${DO_ENV_SUBSTITUTION:-"true"}"
+FORCE=${INPUT_FORCE:-"false"}
+
+if [[ "$FORCE" != "true" ]] ; then
+	FORCE="false"
+fi
 
 if [[ -z "$INPUT_FORGEBOX_USER" ]] || [[ -z "$INPUT_FORGEBOX_PASS" ]] ; then
 	echo "Forgebox environment variables not set. Please set both FORGEBOX_USER and FORGEBOX_PASS environment variables to use this action."
@@ -22,7 +27,7 @@ if [[ -f $BOX_JSON_FILE ]] ; then
 	echo "--------------------------------"
 
 	box forgebox login username="$INPUT_FORGEBOX_USER" password="$INPUT_FORGEBOX_PASS" || exit 1;
-	box publish directory="$FULL_DIR" || exit 1;
+	box publish directory="$FULL_DIR" force="$FORCE" || exit 1;
 
 	echo ""
 	echo "------------------"

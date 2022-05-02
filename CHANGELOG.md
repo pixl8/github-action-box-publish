@@ -1,5 +1,9 @@
 # Changelog
 
+## v4
+
+* [#1](https://github.com/pixl8/github-action-box-publish/issues/1) Add ability to pass FORCE flag
+
 ## v3
 
 * Upgrade to base box lite image 1.5

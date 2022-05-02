@@ -39,11 +39,16 @@ jobs:
           fetch-depth: 0
     
     # this is the usage of this box publish action
-    - uses: pixl8/github-action-box-publish@v3
+    - uses: pixl8/github-action-box-publish@v4
       with:
-      	forgebox_user: myforgeboxuser
-      	forgebox_pass: ${{ secrets.FORGEBOX_PASS }}
+        forgebox_user: myforgeboxuser
+        forgebox_pass: ${{ secrets.FORGEBOX_PASS }}
+        force: "true"
 ```
+
+## Force publishing
+
+In some scenarios, you may wish to pass the --force flag to the box publish command. The action can take a `force` parameter that should be set to `true` if you wish to force publishing (see above example).
 
 ## Environment variable substition
 
