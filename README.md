@@ -39,11 +39,12 @@ jobs:
           fetch-depth: 0
     
     # this is the usage of this box publish action
-    - uses: pixl8/github-action-box-publish@v4
+    - uses: pixl8/github-action-box-publish@v5
       with:
         forgebox_user: myforgeboxuser
         forgebox_pass: ${{ secrets.FORGEBOX_PASS }}
         force: "true"
+        ignore_timeouts: "true"
 ```
 
 ## Force publishing
@@ -75,7 +76,7 @@ steps:
   # add extra steps here that set VERSION_NUMBER and 
   # DOWNLOAD_URL env vars
 
-  - uses: pixl8/github-action-box-publish@v1
+  - uses: pixl8/github-action-box-publish@v5
     with:
       forgebox_user: pixl8
       forgebox_pass: ${{ secrets.FORGEBOX_PASS }}
@@ -95,7 +96,7 @@ This defaults to `true` and means that you can pass in environment variables to 
 If your `box.json` file does not live in the root of your project, set this variable to the directory that contains it, relative to the project root. e.g.
 
 ```yml
-- uses: pixl8/github-action-box-publish@v1
+- uses: pixl8/github-action-box-publish@v5
   env:
     FORGEBOX_USER: pixl8
     FORGEBOX_PASS: ${{ secrets.FORGEBOX_PASS }}

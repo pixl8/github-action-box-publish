@@ -1,5 +1,9 @@
 # Changelog
 
+## v5
+
+* Allow ignoring of box publish timeouts
+
 ## v4
 
 * [#1](https://github.com/pixl8/github-action-box-publish/issues/1) Add ability to pass FORCE flag
