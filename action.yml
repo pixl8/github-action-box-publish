@@ -14,6 +14,9 @@ inputs:
   force:
     description: Whether or not to force publishing by passing --force flag to the box publish command. true or false. Default is false.
     required: false
+  IGNORE_TIMEOUTS:
+    description: Whether or not to ignore forgebox publishing timeouts (default false). If ignored (true), then the action will exit successfully even on a timeout
+    required: false
 runs:
   using: 'docker'
   image: 'Dockerfile'

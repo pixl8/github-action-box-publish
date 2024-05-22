@@ -5,6 +5,7 @@ FULL_DIR="${GITHUB_WORKSPACE}${BOXJSON_DIR}"
 BOX_JSON_FILE="${FULL_DIR}/box.json"
 DO_ENV_SUBSTITUTION="${DO_ENV_SUBSTITUTION:-"true"}"
 FORCE=${INPUT_FORCE:-"false"}
+IGNORE_TIMEOUTS=${IGNORE_TIMEOUTS:-"false"}
 
 if [[ "$FORCE" != "true" ]] ; then
 	FORCE="false"
@@ -27,7 +28,18 @@ if [[ -f $BOX_JSON_FILE ]] ; then
 	echo "--------------------------------"
 
 	box forgebox login username="$INPUT_FORGEBOX_USER" password="$INPUT_FORGEBOX_PASS" || exit 1;
-	box publish directory="$FULL_DIR" force="$FORCE" || exit 1;
+	output=$( box publish directory="$FULL_DIR" force="$FORCE" )
+	result=$?
+
+	echo $output
+
+	if [[ $result == "1" ]] ; then
+		if [[ $output == *"408 Request Time-out"*  &&  $IGNORE_TIMEOUTS == "true" ]] ; then
+			echo "IGNORING timeout from forgebox due to IGNORE_TIMEOUTS flag".
+		else
+			exit 1
+		fi
+	fi
 
 	echo ""
 	echo "------------------"
