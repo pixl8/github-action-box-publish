@@ -34,7 +34,7 @@ if [[ -f $BOX_JSON_FILE ]] ; then
 	echo $output
 
 	if [[ $result == "1" ]] ; then
-		if [[ $output == *"408 Request Time-out"*  &&  $IGNORE_TIMEOUTS == "true" ]] ; then
+		if [[ "$output" == *"408 Request Time-out"*  &&  "$IGNORE_TIMEOUTS" == "true" ]] ; then
 			echo "IGNORING timeout from forgebox due to IGNORE_TIMEOUTS flag".
 		else
 			exit 1
